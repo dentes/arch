@@ -164,5 +164,6 @@ Then, boot up into the iso image on the device and follow the installation guide
 3. [zsh + oh-my-zsh]()
 4. [urxvt]()
 5. [vim]()
+  
 ---
 
