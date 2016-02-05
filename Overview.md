@@ -7,7 +7,8 @@
 
 1. [Exectutive Overview](#1)
 2. [Installing Arch Linux](#2)
-3. [Configuring Core Packages](#3)  
+3. [Configuring Core Packages](#3)
+  
 ---
 ---
 
