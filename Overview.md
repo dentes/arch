@@ -20,11 +20,11 @@ It is meant to be fast, minimal, lightweight, use few resources, and look cool !
 ---
 ### <a name="1"></a>Installing Arch Linux
 
-Download and Transfer the latest Arch Linux ISO to your device with:
+Download and Transfer the latest Arch Linux ISO to your device with:  
 ``
-$ diskutil unmout /dev/sdX
+$ diskutil unmout /dev/sdX  
 $ sudo dd if=/path_to_arch_.iso of=/dev/sdX ba=1M
-``
+``  
 Then, boot up into the iso image on the device and follow the installation guide:
   
   1. Pre-Installation
