@@ -27,16 +27,16 @@ It is meant to be fast, minimal, lightweight, use few resources, and look cool !
 
 ---
   
-**0. Download & Transfer ISO***  
-  0.1. Download the latest .iso  
-  0.2. Connect destination device  
-  0.3. Transfer .iso to destination  
+0. Download & Transfer ISO
++ Download the latest .iso  
++ Connect destination device  
++ Transfer .iso to destination  
 ``
     $ sudo dd if=/path_to_arch_.iso of=/dev/sdX ba=1M
 ``
   0.4. Boot new device  
   
-**1. Pre-Installation**  
+1. Pre-Installation  
 1.1. Set the keyboard layout  
 1.2. Connect to the Internet  
 
@@ -70,7 +70,7 @@ It is meant to be fast, minimal, lightweight, use few resources, and look cool !
 
 ---
 
-**2. Installation**
+2. Installation
     2.1 Select the mirrors
           $ nano /etc/pacman.d/mirrorlist
     2.2 Install the base packages
@@ -101,7 +101,7 @@ It is meant to be fast, minimal, lightweight, use few resources, and look cool !
 
 ---
 
-**3. Post-Installation**
+3. Post-Installation
         >> login as root
           $ ip link
           $ systemctl stop dhcpcd@enXXX.service        // disable off DCHP if wifi
@@ -145,7 +145,7 @@ It is meant to be fast, minimal, lightweight, use few resources, and look cool !
           $ 
 
 
-**4. Some useful Arch commands:**  
+4. Some useful Arch commands:
 
           $ sudo pacman -Sy      // To update the repositories
           $ sudo pacman -Syu     // To update system
