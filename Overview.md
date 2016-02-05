@@ -14,6 +14,7 @@ My Arch Linux setup is characterized by these packages:
 * zsh + oh-my-zsh
 * urxvt
 * vim     
+  
 It is meant to be fast, minimal, lightweight, use few resources, and look cool ! 
 
 ---
