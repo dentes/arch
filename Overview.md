@@ -105,7 +105,7 @@ It is meant to be fast, minimal, lightweight, use few resources, and look cool !
                                                         Include = /etc/pacman.d/mirrorlist  
                                           // ADD:       [archlinuxfr]
                                                         SigLevel = Never
-                                                        Server = http://repo.archlinux.fr/$arch
+                                                        Server = [http://repo.archlinux.fr/$arch](http://repo.archlinux.fr/$arch)
           $ pacman -Sy
           $ pacman -S xf86-input-synaptics
           $ paceman -S yaourt
@@ -113,14 +113,16 @@ It is meant to be fast, minimal, lightweight, use few resources, and look cool !
           $ 
     // If you want a DE
           $ pacman -S xorg-server xorg-server-utils
-              $ pacman -S gnome
-              $ systemctl start gdm.service
-              $ systemctl enable gdm.service
+
+          $ pacman -S gnome
+          + $ systemctl start gdm.service
+          + $ systemctl enable gdm.service
+
           $ pacman -S plasma
           $ pacman -S sddm
           $ systemctl start sddm.service
           $ systemctl enable sddm.service
-          $
+
           // Choose GPU driver
           $ pacman -S xf86-video-intel
           $ pacman -S nvidia nvidia-libgl
