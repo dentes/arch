@@ -14,12 +14,12 @@
 
 ### <a name="1"></a>Executive Overview
 
-My Arch Linux setup is characterized by these packages:
-* [xmonad]()
-* [xmobar]()
-* [zsh + oh-my-zsh]()
-* [urxvt]()
-* [vim]()  
+My Arch Linux setup is characterized by these core packages:
+* [xmonad](http://xmonad.org/)
+* [xmobar](http://projects.haskell.org/xmobar/)
+* [zsh + oh-my-zsh](http://ohmyz.sh/)
+* [urxvt](http://software.schmorp.de/pkg/rxvt-unicode.html)
+* [vim](http://www.vim.org/)  
   
 It is meant to be fast, minimal, lightweight, use few resources, and look cool ! 
 
