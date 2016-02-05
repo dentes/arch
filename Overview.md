@@ -17,7 +17,7 @@
 My Arch Linux setup is characterized by these core packages:
 * [xmonad](http://xmonad.org/)
 * [xmobar](http://projects.haskell.org/xmobar/)
-* [zsh + oh-my-zsh](http://ohmyz.sh/)
+* [zsh](http://www.zsh.org/) + [oh-my-zsh](http://ohmyz.sh/)
 * [urxvt](http://software.schmorp.de/pkg/rxvt-unicode.html)
 * [vim](http://www.vim.org/)  
   
