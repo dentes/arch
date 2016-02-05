@@ -27,39 +27,48 @@ It is meant to be fast, minimal, lightweight, use few resources, and look cool !
 
 ---
   
-0 Download & Transfer ISO
-    0.1 Download the latest .iso
-    0.2 Connect destination device
-    0.3 Transfer .iso to destination      
-          $ sudo dd if=/path_to_arch_.iso of=/dev/sdX ba=1M
-    0.4 Boot new device
+**0 Download & Transfer ISO***  
+    0.1 Download the latest .iso  
+    0.2 Connect destination device  
+    0.3 Transfer .iso to destination        
+        $ sudo dd if=/path_to_arch_.iso of=/dev/sdX ba=1M  
+        0.4 Boot new device  
+  
+**1 Pre-Installation**  
+    1.1 Set the keyboard layout  
+    1.2 Connect to the Internet  
 
-1 Pre-Installation
-    1.1 Set the keyboard layout
-    1.2 Connect to the Internet
-          $ ip link
-     or   $ wifi-menu 
-          $ ping -c 3 8.8.8.8
-          $ ping -c 3 www.google.com
-    1.3 Update the system clock
-    1.4 Partition the disks
-          $ parted /dev/sdx
-    1.5 Format the partitions             
-          $ (parted) mklabel msdos
-          $ mkpart primary ext4 1MiB 10GiB 
-          $ set 1 boot on
-          $ mkpart primary linux-swap 10GiB 12GiB
-          $ quit
-        # Create File Systems
+        $ ip link  
+        $ wifi-menu   
+        $ ping -c 3 8.8.8.8  
+        $ ping -c 3 www.google.com
+\
+    1.3 Update the system clock  
+    1.4 Partition the disks 
+
+        $ parted /dev/sdx
+\     
+    1.5 Format the partitions  
+
+        $ (parted) mklabel msdos  
+        $ mkpart primary ext4 1MiB 10GiB  
+        $ set 1 boot on  
+        $ mkpart primary linux-swap 10GiB 12GiB  
+        $ quit  
+\
+        // Create File Systems  
+
           $ mkfs.ext4 /dev/sdxN
           $ mkswap /dev/sdXY
           $ swapon /dev/sdXY
+\
     1.6 Mount the partitions
+
           $ mount /dev/sdXN /mnt  
 
 ---
 
-2 Installation
+**2 Installation**
     2.1 Select the mirrors
           $ nano /etc/pacman.d/mirrorlist
     2.2 Install the base packages
@@ -90,7 +99,7 @@ It is meant to be fast, minimal, lightweight, use few resources, and look cool !
 
 ---
 
-3 Post-Installation
+**3 Post-Installation**
         >> login as root
           $ ip link
           $ systemctl stop dhcpcd@enXXX.service        // disable off DCHP if wifi
