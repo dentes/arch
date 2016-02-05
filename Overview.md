@@ -1,11 +1,16 @@
 # Arch Linux
 ## System Overview
 
-[](This is a comment, it will not be included)
+---
+*Table of Contents*  
+  0. [Exectutive Overview](#0)  
+  1. More  
+  2. Event more  
+  3. lol
 
-### Executive Overview
+### <a name="0"></a>Executive Overview
 
-My Arch Linux setup is characterized by the following features:
+My Arch Linux setup is characterized by these packages:
 * xmonad
 * xmobar
 * zsh + oh-my-zsh
