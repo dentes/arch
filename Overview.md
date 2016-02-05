@@ -2,11 +2,16 @@
 ## System Overview
 
 ---
+---
 **Table of Contents**  
-  0. [Exectutive Overview](#0)  
-  1. [Installing Arch Linux](#1)  
 
-### <a name="0"></a>Executive Overview
+1. [Exectutive Overview](#1)
+2. [Installing Arch Linux](#2)
+3. [Configuring Core Packages](#3)
+---
+---
+
+### <a name="1"></a>Executive Overview
 
 My Arch Linux setup is characterized by these packages:
 * [xmonad]()
@@ -14,10 +19,11 @@ My Arch Linux setup is characterized by these packages:
 * [zsh + oh-my-zsh]()
 * [urxvt]()
 * [vim]()  
+  
 It is meant to be fast, minimal, lightweight, use few resources, and look cool ! 
 
 ---
-### <a name="1"></a>Installing Arch Linux
+### <a name="2"></a>Installing Arch Linux
 
 Download and Transfer the latest Arch Linux ISO to your device with:  
 ``
@@ -148,5 +154,14 @@ Then, boot up into the iso image on the device and follow the installation guide
           $ sudo pacman -Rns     // To remove any package
           $ yaourt -Syua         // To update packages from AUR
 
+---
 
+### <a name="3"></a>Configuring Core Packages
+
+1. [xmonad]()
+2. [xmobar]()
+3. [zsh + oh-my-zsh]()
+4. [urxvt]()
+5. [vim]()
+---
 
