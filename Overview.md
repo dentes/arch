@@ -31,9 +31,9 @@ It is meant to be fast, minimal, lightweight, use few resources, and look cool !
     0.1. Download the latest .iso  
     0.2. Connect destination device  
     0.3. Transfer .iso to destination  
-
+``
         $ sudo dd if=/path_to_arch_.iso of=/dev/sdX ba=1M
-
+``
 0.4. Boot new device  
   
 **1. Pre-Installation**  
