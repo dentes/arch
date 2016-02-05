@@ -13,9 +13,9 @@ My Arch Linux setup is characterized by these packages:
 * xmobar
 * zsh + oh-my-zsh
 * urxvt
-* vim
-
+* vim     
 It is meant to be fast, minimal, lightweight, use few resources, and look cool ! 
+
 ---
 ### <a name="1"></a>Installing Arch Linux
 
