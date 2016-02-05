@@ -9,12 +9,11 @@
 ### <a name="0"></a>Executive Overview
 
 My Arch Linux setup is characterized by these packages:
-* xmonad
-* xmobar
-* zsh + oh-my-zsh
-* urxvt
-* vim     
-  
+* [xmonad]()
+* [xmobar]()
+* [zsh + oh-my-zsh]()
+* [urxvt]()
+* [vim]()  
 It is meant to be fast, minimal, lightweight, use few resources, and look cool ! 
 
 ---
