@@ -206,7 +206,7 @@ $ pacman -S nvidia nvidia-libgl
 $ pacman -S xf86-video-ati lib32-mesa-libgl
 ```
 
-Installing s WM: xmonad
+Installing a WM: xmonad
 ```
 $ pacman -S xmonad
 ```
