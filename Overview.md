@@ -199,7 +199,7 @@ $ pacman -S xfce4
 $ startxs
 ```
 
-// Choose GPU driver, depending on your machine
+Choose a GPU driver, depending on your machine:
 ```
 $ pacman -S xf86-video-intel
 $ pacman -S nvidia nvidia-libgl
