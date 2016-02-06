@@ -38,23 +38,22 @@ Then, boot up into the iso image on the device and follow the installation guide
   3. Post-Installation
 
 ---
-   
-1. Pre-Installation  
   
-1.1. Set the keyboard layout  
-1.2. Connect to the Internet
+1. Pre-Installation  
++ Set the keyboard layout  
++ Connect to the Internet
 ```
     $ ip link  
     $ wifi-menu   
     $ ping -c 3 8.8.8.8  
     $ ping -c 3 www.google.com
-```  
-1.3. Update the system clock  
-1.4. Partition the disks 
-```  
-    $ parted /dev/sdx
-```  
-1.5. a. Format the partitions  
+```
+
++ Update the system clock  
++ Partition the disks 
+```$ parted /dev/sdx```
+  
++ a. Format the partitions  
 ```
     $ (parted) mklabel msdos  
     $ (parted) mkpart primary ext4 1MiB 10GiB  
@@ -63,25 +62,26 @@ Then, boot up into the iso image on the device and follow the installation guide
     $ (parted) quit  
 ```
 
-1.5. b. Create File Systems  
-```    
++ b. Create File Systems  
+```  
     $ mkfs.ext4 /dev/sdxN
     $ mkswap /dev/sdXY
     $ swapon /dev/sdXY
 ```
-1.6. Mount the partitions
 
-          $ mount /dev/sdXN /mnt  
++ Mount the partitions
+
+```$ mount /dev/sdXN /mnt```
 
 ---
 
-2. Installation
+2. Installation  
     2.1 Select the mirrors
-          $ nano /etc/pacman.d/mirrorlist
+          ```$ nano /etc/pacman.d/mirrorlist```
     2.2 Install the base packages
-          $ pacstrap -i /mnt base base-devel   
+          ```$ pacstrap -i /mnt base base-devel```   
     2.3 Configure the system
-          $ genfstab -U  /mnt > /mnt/etc/fstab
+          ```$ genfstab -U  /mnt > /mnt/etc/fstab
           $ arch-chroot /mnt /bin/bash
           $ nano /etc/locale.gen
           $ locale-gen
@@ -92,7 +92,7 @@ Then, boot up into the iso image on the device and follow the installation guide
           $ hwclock --systohc --utc
           $ echo HOSTNAME > /etc/hostname
           $ passwd
-          $ pacman -S iw wpa_supplicant dialog
+          $ pacman -S iw wpa_supplicant dialog```
     2.4 Install a boot loader
           $ pacman -S grub os-prober      // os-prober for dual-booting
           $ grub-install --recheck --target=i386-pc /dev/sdX
