@@ -40,7 +40,7 @@ Then, boot up into the iso image on the device and follow the installation guide
 ---
   
 1. Pre-Installation  
-i. Set the keyboard layout  
+<pre>1.1. Set the keyboard layout  
 1.2. Connect to the Internet  
 ```
 $ ip link  
@@ -71,10 +71,7 @@ $ swapon /dev/sdXY
 ```
 $ mount /dev/sdXN /mnt
 ```
-
-
-
----
+</pre>
 
 2. Installation  
     2.1 Select the mirrors
