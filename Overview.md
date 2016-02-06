@@ -39,22 +39,24 @@ Then, boot up into the iso image on the device and follow the installation guide
 
 ---
   
-1. Pre-Installation  <pre>
-    1.1. Set the keyboard layout  
-    1.2. Connect to the Internet  
+1 Pre-Installation  
+1.1. Set the keyboard layout  
+1.2. Connect to the Internet  
 ```
 $ ip link  
 $ wifi-menu   
 $ ping -c 3 8.8.8.8  
 $ ping -c 3 www.google.com
 ```
-    1.3. Update the system clock  
-    1.4. Partition the disks  
+
+1.3. Update the system clock  
+1.4. Partition the disks  
 ```
 $ parted /dev/sdx
 ```
     1.5. a. Format the partitions  
 ```
+
 $ (parted) mklabel msdos  
 $ (parted) mkpart primary ext4 1MiB 10GiB  
 $ (parted) set 1 boot on  
@@ -63,17 +65,19 @@ $ (parted) quit
 ```
     1.5. b. Create File Systems  
 ```
+
 $ mkfs.ext4 /dev/sdxN
 $ mkswap /dev/sdXY
 $ swapon /dev/sdXY
 ```
+
     1.6 Mount the partitions
 ```
 $ mount /dev/sdXN /mnt
 ```
-</pre>
+</ol>
 
-2. Installation  
+2 Installation  
     2.1 Select the mirrors
           ```$ nano /etc/pacman.d/mirrorlist```
     2.2 Install the base packages
@@ -104,7 +108,7 @@ $ mount /dev/sdXN /mnt
 
 ---
 
-3. Post-Installation
+3 Post-Installation
         >> login as root
           $ ip link
           $ systemctl stop dhcpcd@enXXX.service        // disable off DCHP if wifi
@@ -148,7 +152,7 @@ $ mount /dev/sdXN /mnt
           $ 
 
 
-4. Some useful Arch commands:
+4 Some useful Arch commands:
 
           $ sudo pacman -Sy      // To update the repositories
           $ sudo pacman -Syu     // To update system
