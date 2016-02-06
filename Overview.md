@@ -54,79 +54,108 @@ $ ping -c 3 www.google.com
 ```
 $ parted /dev/sdx
 ```
-    1.5. a. Format the partitions  
-```
 
+1.5. a. Format the partitions  
+```
 $ (parted) mklabel msdos  
 $ (parted) mkpart primary ext4 1MiB 10GiB  
 $ (parted) set 1 boot on  
 $ (parted) mkpart primary linux-swap 10GiB 12GiB  
 $ (parted) quit
 ```
-    1.5. b. Create File Systems  
-```
 
+1.5. b. Create File Systems  
+```
 $ mkfs.ext4 /dev/sdxN
 $ mkswap /dev/sdXY
 $ swapon /dev/sdXY
 ```
 
-    1.6 Mount the partitions
+1.6 Mount the partitions
 ```
 $ mount /dev/sdXN /mnt
 ```
-</ol>
-
-2 Installation  
-    2.1 Select the mirrors
-          ```$ nano /etc/pacman.d/mirrorlist```
-    2.2 Install the base packages
-          ```$ pacstrap -i /mnt base base-devel```   
-    2.3 Configure the system
-          ```$ genfstab -U  /mnt > /mnt/etc/fstab
-          $ arch-chroot /mnt /bin/bash
-          $ nano /etc/locale.gen
-          $ locale-gen
-          $ echo LANG=en_US.UTF-8 > /etc/locale.conf
-          $ export LANG=en_US.UTF-8
-          $ tzselect
-          $ ln -s /usr/share/zoneinfo/America/New_York > /etc/localtime
-          $ hwclock --systohc --utc
-          $ echo HOSTNAME > /etc/hostname
-          $ passwd
-          $ pacman -S iw wpa_supplicant dialog```
-    2.4 Install a boot loader
-          $ pacman -S grub os-prober      // os-prober for dual-booting
-          $ grub-install --recheck --target=i386-pc /dev/sdX
-          $ grub-mkconfig -o /boot/grub/grub.cfg
-          $ 
-          $ 
-          $ exit
-    2.5 Reboot
-          $ umount -R /mnt
-          $ reboot  
 
 ---
 
-3 Post-Installation
-        >> login as root
-          $ ip link
-          $ systemctl stop dhcpcd@enXXX.service        // disable off DCHP if wifi
-          $ systemctl enable dhcpcd@enXXX.service      // enable DCHP by default
-          $ systemctl start dhcpcd@enXXX.service
-          $ useradd -m -G wheel -s /bin/bash USERNAME
-          $ passwd USERNAME
-          $ pacman -S sudo
-          $ EDITOR=nano visudo            // UNCOMMENT: %wheel ALL=(ALL) ALL
-          $ pacman -S bash-completion
-          $ nano /etc/pacman.conf         // UNCOMMENT: [multilib]
-                                                        Include = /etc/pacman.d/mirrorlist  
-                                          // ADD:       [archlinuxfr]
-                                                        SigLevel = Never
-                                                        Server = [http://repo.archlinux.fr/$arch](http://repo.archlinux.fr/$arch)
+2 Installation  
+2.1 Select the mirrors
+          ```$ nano /etc/pacman.d/mirrorlist```
+
+2.2 Install the base packages
+          ```$ pacstrap -i /mnt base base-devel```  
+
+2.3 Configure the system
+```
+$ genfstab -U  /mnt > /mnt/etc/fstab
+$ arch-chroot /mnt /bin/bash
+$ nano /etc/locale.gen
+$ locale-gen
+$ echo LANG=en_US.UTF-8 > /etc/locale.conf
+$ export LANG=en_US.UTF-8
+$ tzselect
+$ ln -s /usr/share/zoneinfo/America/New_York > /etc/localtime
+$ hwclock --systohc --utc
+$ echo HOSTNAME > /etc/hostname
+$ passwd
+$ pacman -S iw wpa_supplicant dialog
+```
+
+2.4 Install a boot loader
+```         
+$ pacman -S grub os-prober      // os-prober for dual-booting
+$ grub-install --recheck --target=i386-pc /dev/sdX
+$ grub-mkconfig -o /boot/grub/grub.cfg
+$ 
+$ 
+$ exit
+```
+
+2.5 Reboot
+```
+$ umount -R /mnt
+$ reboot  
+```
+
+---
+
+3 Post-Installation  
+First, login as the root user
+```
+$ ip link
+$ systemctl stop dhcpcd@enXXX.service        // disable off DCHP if wifi
+$ systemctl enable dhcpcd@enXXX.service      // enable DCHP by default
+$ systemctl start dhcpcd@enXXX.service
+$ useradd -m -G wheel -s /bin/bash USERNAME
+$ passwd USERNAME
+$ pacman -S sudo
+```
+
+Second, uncomment the line: `%wheel ALL=(ALL) ALL`. Then run the following:
+```
+$ EDITOR=nano visudo            
+$ pacman -S bash-completion
+```
+
+Third, run `$ nano /etc/pacman.conf` and uncomment the following lines:
+```
+[multilib]
+Include = /etc/pacman.d/mirrorlist  
+```
+
+In the same file, to use the AUR repositories, add at the bottom:
+```
+[archlinuxfr]
+SigLevel = Never
+Server = [http://repo.archlinux.fr/$arch](http://repo.archlinux.fr/$arch)
+```
+
+
+          
+          
           $ pacman -Sy
           $ pacman -S xf86-input-synaptics
-          $ paceman -S yaourt
+          $ pacman -S yaourt
           $ 
           $ 
     // If you want a DE
