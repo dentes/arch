@@ -86,7 +86,7 @@ $ swapon /dev/sdXY
 ```$ nano /etc/pacman.d/mirrorlist```  
 2.2 Install the base packages
 ```$ pacstrap -i /mnt base base-devel```  
-2.3 Configure the system
+2.3 Configure the system:
 ```
 // Generate your fstab file
 $ genfstab -U  /mnt > /mnt/etc/fstab
@@ -111,13 +111,14 @@ $ passwd
 $ pacman -S iw wpa_supplicant dialog
 ```
 
-2.4 Install a boot loader
+2.4 Install a boot loader (here I use grub).  
+Note: if you plan to dual-boot another OS, get the os-prober package as well!
 ```         
 $ pacman -S grub os-prober      // os-prober for dual-booting
 $ grub-install --recheck --target=i386-pc /dev/sdX
 $ grub-mkconfig -o /boot/grub/grub.cfg
-$ 
-$ 
+
+// Exit out of root user
 $ exit
 ```
 
@@ -138,58 +139,68 @@ $ systemctl enable dhcpcd@enXXX.service      // or enable DCHP by default
 $ systemctl start dhcpcd@enXXX.service
 $ useradd -m -G wheel -s /bin/bash USERNAME
 $ passwd USERNAME
+
+// Get the sudo package, as well as bash auto-completion
 $ pacman -S sudo
+$ pacman -S bash-completion
+
+// If on a laptop, get:
+$ pacman -S xf86-input-synaptics
 ```
 
-Second, uncomment the line: `%wheel ALL=(ALL) ALL`. Then run the following:
+Second, uncomment the line: `%wheel ALL=(ALL) ALL` after running:
 ```
 $ EDITOR=nano visudo            
-$ pacman -S bash-completion
 ```
 
-Third, run `$ nano /etc/pacman.conf` and uncomment the following lines:
+Third, run `$ nano /etc/pacman.conf` and uncomment the following lines if on a 64-bit machine:
 ```
 [multilib]
 Include = /etc/pacman.d/mirrorlist  
 ```
 
-In the same file, to use the AUR repositories, add at the bottom:
+In the same file, add this at the bottom to use the AUR repositories:
 ```
 [archlinuxfr]
 SigLevel = Never
 Server = [http://repo.archlinux.fr/$arch](http://repo.archlinux.fr/$arch)
 ```
 
-
-          
-          
+Update repositories and grab the yaourt package: 
+```
           $ pacman -Sy
-          $ pacman -S xf86-input-synaptics
           $ pacman -S yaourt
-          $ 
-          $ 
-    // If you want a DE
-          $ pacman -S xorg-server xorg-server-utils
+```
+   
+Installing a DE
+```
+$ pacman -S xorg-server xorg-server-utils
 
-          $ pacman -S gnome
-          + $ systemctl start gdm.service
-          + $ systemctl enable gdm.service
+// For Gnome 3
+$ pacman -S gnome
+$ $ systemctl start gdm.service
+$ $ systemctl enable gdm.service
 
-          $ pacman -S plasma
-          $ pacman -S sddm
-          $ systemctl start sddm.service
-          $ systemctl enable sddm.service
+// For KDE Plasma 5
+$ pacman -S plasma
+$ pacman -S sddm
+$ systemctl start sddm.service
+$ systemctl enable sddm.service
 
-          // Choose GPU driver
-          $ pacman -S xf86-video-intel
-          $ pacman -S nvidia nvidia-libgl
-          $ pacman -S xf86-video-ati lib32-mesa-libgl
+// For Xfce4
+$ pacman -S xfce4
+$ startxs
+```
 
-    // XMONAD
+// Choose GPU driver, depending on your machine
+$ pacman -S xf86-video-intel
+$ pacman -S nvidia nvidia-libgl
+$ pacman -S xf86-video-ati lib32-mesa-libgl
+
+Installing s WM: xmonad
+```
           $ pacman -S xmonad
-          $ 
-          $ 
-
+```
 
 4 Some useful Arch commands:
 
