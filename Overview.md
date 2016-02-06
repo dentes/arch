@@ -42,28 +42,37 @@ Then, boot up into the iso image on the device and follow the installation guide
 1. Pre-Installation  
 1.1. Set the keyboard layout  
 1.2. Connect to the Internet  
-```$ ip link  
+```
+$ ip link  
 $ wifi-menu   
 $ ping -c 3 8.8.8.8  
 $ ping -c 3 www.google.com
-```  
+```
 1.3. Update the system clock  
 1.4. Partition the disks  
-```$ parted /dev/sdx```  
+```
+$ parted /dev/sdx
+```
 1.5. a. Format the partitions  
-```$ (parted) mklabel msdos  
+```
+$ (parted) mklabel msdos  
 $ (parted) mkpart primary ext4 1MiB 10GiB  
 $ (parted) set 1 boot on  
 $ (parted) mkpart primary linux-swap 10GiB 12GiB  
 $ (parted) quit
-```  
+```
 1.5. b. Create File Systems  
-```$ mkfs.ext4 /dev/sdxN
+```
+$ mkfs.ext4 /dev/sdxN
 $ mkswap /dev/sdXY
 $ swapon /dev/sdXY
-```  
+```
 1.6 Mount the partitions
-```$ mount /dev/sdXN /mnt```  
+```
+$ mount /dev/sdXN /mnt
+```
+
+
 
 ---
 
