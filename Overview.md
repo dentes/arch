@@ -43,6 +43,7 @@ Then, boot up into the iso image on the device and follow the installation guide
 1.1. Set the keyboard layout  
 1.2. Connect to the Internet  
 ```
+// If you use wifi setup internet with:
 $ ip link  
 $ wifi-menu   
 $ ping -c 3 8.8.8.8  
@@ -51,20 +52,24 @@ $ ping -c 3 www.google.com
 
 1.3. Update the system clock  
 1.4. Partition the disks  
-```
-$ parted /dev/sdx
-```
+```$ parted /dev/sdx```
 
 1.5. a. Format the partitions  
 ```
-$ (parted) mklabel msdos  
+$ (parted) mklabel msdos
+
+// Set the range from 1MiB to however big you want
 $ (parted) mkpart primary ext4 1MiB 10GiB  
-$ (parted) set 1 boot on  
+
+// Set boot flag on it
+$ (parted) set 1 boot on
+
+// Set the range from end of last partition to the addition of your amount of RAM (or more)s  
 $ (parted) mkpart primary linux-swap 10GiB 12GiB  
 $ (parted) quit
 ```
 
-1.5. b. Create File Systems  
+1.5. b. Create File Systems (I chose ext4)  
 ```
 $ mkfs.ext4 /dev/sdxN
 $ mkswap /dev/sdXY
@@ -72,9 +77,7 @@ $ swapon /dev/sdXY
 ```
 
 1.6 Mount the partitions
-```
-$ mount /dev/sdXN /mnt
-```
+```$ mount /dev/sdXN /mnt``` 
 
 ---
 
@@ -85,7 +88,10 @@ $ mount /dev/sdXN /mnt
 ```$ pacstrap -i /mnt base base-devel```  
 2.3 Configure the system
 ```
+// Generate your fstab file
 $ genfstab -U  /mnt > /mnt/etc/fstab
+
+// chroot in and setup timezone and clock
 $ arch-chroot /mnt /bin/bash
 $ nano /etc/locale.gen
 $ locale-gen
@@ -94,8 +100,14 @@ $ export LANG=en_US.UTF-8
 $ tzselect
 $ ln -s /usr/share/zoneinfo/America/New_York > /etc/localtime
 $ hwclock --systohc --utc
+
+// Set computer hostname
 $ echo HOSTNAME > /etc/hostname
+
+// Set root user password
 $ passwd
+
+// If you plan to use wifi, get this package now
 $ pacman -S iw wpa_supplicant dialog
 ```
 
@@ -121,8 +133,8 @@ $ reboot
 First, login as the root user
 ```
 $ ip link
-$ systemctl stop dhcpcd@enXXX.service        // disable off DCHP if wifi
-$ systemctl enable dhcpcd@enXXX.service      // enable DCHP by default
+$ systemctl stop dhcpcd@enXXX.service        // disable DCHP if on wifi
+$ systemctl enable dhcpcd@enXXX.service      // or enable DCHP by default
 $ systemctl start dhcpcd@enXXX.service
 $ useradd -m -G wheel -s /bin/bash USERNAME
 $ passwd USERNAME
