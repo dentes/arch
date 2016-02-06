@@ -33,9 +33,9 @@ $ sudo dd if=/path_to_arch_.iso of=/dev/sdX ba=1M
 ```
 Then, boot up into the iso image on the device and follow the installation guide:
   
-  1. Pre-Installation
-  2. Installation
-  3. Post-Installation
+1. Pre-Installation
+2. Installation
+3. Post-Installation
 
 ---
   
@@ -80,11 +80,9 @@ $ mount /dev/sdXN /mnt
 
 2 Installation  
 2.1 Select the mirrors
-          ```$ nano /etc/pacman.d/mirrorlist```
-
+```$ nano /etc/pacman.d/mirrorlist```  
 2.2 Install the base packages
-          ```$ pacstrap -i /mnt base base-devel```  
-
+```$ pacstrap -i /mnt base base-devel```  
 2.3 Configure the system
 ```
 $ genfstab -U  /mnt > /mnt/etc/fstab
