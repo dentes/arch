@@ -196,7 +196,7 @@ $ systemctl enable sddm.service
 
 // For Xfce4
 $ pacman -S xfce4
-$ startxs
+$ startx
 ```
 
 Choose a GPU driver, depending on your machine:
