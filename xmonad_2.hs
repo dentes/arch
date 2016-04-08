@@ -22,7 +22,7 @@ myFocusedBorderColor	=	"#323232"
 myKeys conf@(XConfig {XMonad.modMask = mod4Mask}) = M.fromList $
 	[
 		((mod4Mask,					xK_space	), spawn "dmenu_run -fn 'Terminus:bold:size=16' -nb '#000' -nf '#868686' -sb '#868686' -sf '#fff'"),	-- Init dmenu_run
-		((mod4Mask,					xK_slash	), spawn $ XMonad.terminal conf),	-- Init a terminal
+		((mod4Mask,					xK_slash	), spawn "urxvtc"),	-- Init a terminal
 		((mod4Mask,					xK_Tab		), windows W.focusDown),			-- Move focus to the next window
 		((mod4Mask .|. shiftMask,	xK_Tab		), sendMessage NextLayout),			-- Rotate through the available layout algorithms
 		((mod4Mask,					xK_n		), prevWS),						--
