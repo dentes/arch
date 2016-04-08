@@ -5,10 +5,14 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.ToggleLayouts
 import XMonad.Layout.Spacing
+import XMonad.Util.EZConfig 			-- new
+import Graphics.X11.ExtraTypes.XF86		-- new
+import Data.Ratio ((%))					-- new
+import System.IO						-- new
 import qualified XMonad.StackSet as W
 import qualified Data.Map as M
  
-myTerminal			=	"urxvt"
+myTerminal			=	"xterm"
 myBorderWidth		=	2
 myModMask			=	mod4Mask
 myWorkspaces		=	["ZSH","VIM","WEB","IRC"]
@@ -20,11 +24,11 @@ myFocusedBorderColor	=	"#323232"
 --------------------------------------------------------------------------------------
 
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
-myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
+myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	[
 		--((mod4Mask,					xK_space	), spawn "dmenu_run -fn 'Terminus:bold:size=16' -nb '#000' -nf '#868686' -sb '#868686' -sf '#fff'"),	-- Init dmenu_run
 		--((mod4Mask, 				xK_Return	), spawn "terminator") -- spawn terminator terminal 
-		--((mod4Mask,					xK_slash	), spawn "terminator"),	-- Init a terminal
+		((modm,					xK_slash	), spawn $ XMonad.terminal conf),	-- Init a terminal
 		((mod4Mask,					xK_Tab		), windows W.focusDown),			-- Move focus to the next window
 		((mod4Mask .|. shiftMask,	xK_Tab		), sendMessage NextLayout),			-- Rotate through the available layout algorithms
 		((mod4Mask,					xK_n		), prevWS),						--
@@ -70,7 +74,8 @@ myMouseBindings (XConfig {XMonad.modMask = mod4Mask}) = M.fromList $
 --		((mod4Mask, button2),	(\w -> focus w	>> 	windows W.shiftMaster)),	-- mod-button2, raise window
 --		((mod4Mask, button3),	(\w -> focus w	>>	mouseResizeWindow w
 --									>>	windows W.shiftMaster))	-- mod-button3, float and resize window 
-mod4Mask	]
+--		mod4Mask
+	]
  
 --------------------------------------------------------------------------------------
 -- Layouts
