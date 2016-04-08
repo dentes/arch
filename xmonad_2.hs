@@ -22,8 +22,8 @@ myFocusedBorderColor	=	"#323232"
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 	[
-		((mod4Mask,					xK_space	), spawn "dmenu_run -fn 'Terminus:bold:size=16' -nb '#000' -nf '#868686' -sb '#868686' -sf '#fff'"),	-- Init dmenu_run
-		((mod4Mask, 				xK_Return	), spawn "terminator") -- spawn terminator terminal 
+		--((mod4Mask,					xK_space	), spawn "dmenu_run -fn 'Terminus:bold:size=16' -nb '#000' -nf '#868686' -sb '#868686' -sf '#fff'"),	-- Init dmenu_run
+		--((mod4Mask, 				xK_Return	), spawn "terminator") -- spawn terminator terminal 
 		--((mod4Mask,					xK_slash	), spawn "terminator"),	-- Init a terminal
 		((mod4Mask,					xK_Tab		), windows W.focusDown),			-- Move focus to the next window
 		((mod4Mask .|. shiftMask,	xK_Tab		), sendMessage NextLayout),			-- Rotate through the available layout algorithms
