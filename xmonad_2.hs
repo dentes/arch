@@ -23,10 +23,8 @@ myFocusedBorderColor	=	"#323232"
 -- Key bindings
 --------------------------------------------------------------------------------------
 
---myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
---myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
-
-keysToAdd x =
+myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
+myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 	[
 		--((modm,					xK_space	), spawn "dmenu_run -fn 'Terminus:bold:size=16' -nb '#000' -nf '#868686' -sb '#868686' -sf '#fff'"),	-- Init dmenu_run
 		--((modm, 				xK_Return	), spawn "terminator") -- spawn terminator terminal 
@@ -61,15 +59,6 @@ keysToAdd x =
     --[((m .|. mod4Mask, k), windows $ f i)
     --  | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
     --  , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
-	
-keysToDel x =
-	[
-		-- nothing yet
-	]
-	
-newKeys x = M.union (keys defaultConfig x) (M.fromList (keysToAdd x)) -- to include new keys to existing keys  
-myKeys x = foldr M.delete (newKeys x) (keysToDel x) -- to delete the unused keys  
- 
 
  
 --------------------------------------------------------------------------------------
