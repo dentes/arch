@@ -23,43 +23,54 @@ myFocusedBorderColor	=	"#323232"
 -- Key bindings
 --------------------------------------------------------------------------------------
 
-myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
-myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
+--myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
+--myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
+
+keysToAdd x =
 	[
-		--((mod4Mask,					xK_space	), spawn "dmenu_run -fn 'Terminus:bold:size=16' -nb '#000' -nf '#868686' -sb '#868686' -sf '#fff'"),	-- Init dmenu_run
-		--((mod4Mask, 				xK_Return	), spawn "terminator") -- spawn terminator terminal 
+		--((modm,					xK_space	), spawn "dmenu_run -fn 'Terminus:bold:size=16' -nb '#000' -nf '#868686' -sb '#868686' -sf '#fff'"),	-- Init dmenu_run
+		--((modm, 				xK_Return	), spawn "terminator") -- spawn terminator terminal 
 		((modm,					xK_slash	), spawn $ XMonad.terminal conf),	-- Init a terminal
-		((mod4Mask,					xK_Tab		), windows W.focusDown),			-- Move focus to the next window
-		((mod4Mask .|. shiftMask,	xK_Tab		), sendMessage NextLayout),			-- Rotate through the available layout algorithms
-		((mod4Mask,					xK_n		), prevWS),						--
-		((mod4Mask,					xK_o		), nextWS),						--
-		((mod4Mask .|. shiftMask,	xK_n		), shiftToPrev >> prevWS),			-- 
-		((mod4Mask .|. shiftMask,	xK_o		), shiftToNext >> nextWS),			-- 
-		((mod4Mask,					xK_n		), refresh),						-- Resize viewed windows to the correct size
-		((mod4Mask,					xK_j		), windows W.focusDown),			-- Move focus to the next window
-		((mod4Mask,					xK_k		), windows W.focusUp),				-- Move focus to the previous window
-		((mod4Mask,					xK_m		), windows W.focusMaster),			-- Move focus to the master window
-		--((mod4Mask, xK_Return), sendMessage ToggleLayout),          				-- Toggle fullscreen mode
-		--((mod4Mask .|. shiftMask,	xK_c     ), kill),									-- close focused window
-		--((mod4Mask .|. shiftMask,	xK_space ), setLayout $ XMonad.layoutHook conf),	-- Reset the layouts on current workspace to default
-		--((mod4Mask,				xK_Return), windows W.swapMaster),					-- Swap the focused window and the master window
-		--((mod4Mask .|. shiftMask,	xK_j     ), windows W.swapDown  ),					-- Swap the focused window with the next window
-		--((mod4Mask .|. shiftMask,	xK_k     ), windows W.swapUp    ),					-- Swap the focused window with the previous window
-		--((mod4Mask,				xK_h     ), sendMessage Shrink),					-- Shrink the master area
-		--((mod4Mask,				xK_l     ), sendMessage Expand),					-- Expand the master area
-		--((mod4Mask,				xK_t     ), withFocused $ windows . W.sink),		-- Push window back into tiling
-		--((mod4Mask,				xK_comma ), sendMessage (IncMasterN 1)),			-- Increment number of windows in the master area
-		--((mod4Mask,				xK_period), sendMessage (IncMasterN (-1))),			-- Deincrement number of windows in the master area
-		((mod4Mask, xK_comma ), io (exitWith ExitSuccess)),						-- Quit xmonad
-		((mod4Mask, xK_period), spawn "xmonad --recompile; xmonad --restart")	-- Restart xmonad
+		((modm,					xK_Tab		), windows W.focusDown),			-- Move focus to the next window
+		((modm .|. shiftMask,	xK_Tab		), sendMessage NextLayout),			-- Rotate through the available layout algorithms
+		((modm,					xK_n		), prevWS),						--
+		((modm,					xK_o		), nextWS),						--
+		((modm .|. shiftMask,	xK_n		), shiftToPrev >> prevWS),			-- 
+		((modm .|. shiftMask,	xK_o		), shiftToNext >> nextWS),			-- 
+		((modm,					xK_n		), refresh),						-- Resize viewed windows to the correct size
+		((modm,					xK_j		), windows W.focusDown),			-- Move focus to the next window
+		((modm,					xK_k		), windows W.focusUp),				-- Move focus to the previous window
+		((modm,					xK_m		), windows W.focusMaster),			-- Move focus to the master window
+		--((modm, xK_Return), sendMessage ToggleLayout),          				-- Toggle fullscreen mode
+		((modm .|. shiftMask,	xK_c     ), kill),									-- close focused window
+		--((modm .|. shiftMask,	xK_space ), setLayout $ XMonad.layoutHook conf),	-- Reset the layouts on current workspace to default
+		--((modm,				xK_Return), windows W.swapMaster),					-- Swap the focused window and the master window
+		--((modm .|. shiftMask,	xK_j     ), windows W.swapDown  ),					-- Swap the focused window with the next window
+		--((modm .|. shiftMask,	xK_k     ), windows W.swapUp    ),					-- Swap the focused window with the previous window
+		--((modm,				xK_h     ), sendMessage Shrink),					-- Shrink the master area
+		--((modm,				xK_l     ), sendMessage Expand),					-- Expand the master area
+		--((modm,				xK_t     ), withFocused $ windows . W.sink),		-- Push window back into tiling
+		--((modm,				xK_comma ), sendMessage (IncMasterN 1)),			-- Increment number of windows in the master area
+		--((modm,				xK_period), sendMessage (IncMasterN (-1))),			-- Deincrement number of windows in the master area
+		((modm, xK_comma ), io (exitWith ExitSuccess)),						-- Quit xmonad
+		((modm, xK_period), spawn "xmonad --recompile; xmonad --restart")	-- Restart xmonad
 	]
+	++
+    mod-[1..9], Switch to workspace N
+    mod-shift-[1..9], Move client to workspace N
+    [((m .|. mod4Mask, k), windows $ f i)
+      | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+      , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+	
+keysToDel x =
+	[
+		-- nothing yet
+	]
+	
+newKeys x = M.union (keys defaultConfig x) (M.fromList (keysToAdd x)) -- to include new keys to existing keys  
+myKeys x = foldr M.delete (newKeys x) (keysToDel x) -- to delete the unused keys  
  
- 	-- WHAT DOES THIS DO BELOW ??
-    -- mod-[1..9], Switch to workspace N
-    -- mod-shift-[1..9], Move client to workspace N
-    --[((m .|. mod4Mask, k), windows $ f i)
-    --  | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-    --  , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+
  
 --------------------------------------------------------------------------------------
 -- Mouse bindings
