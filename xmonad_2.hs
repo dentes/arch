@@ -55,12 +55,12 @@ keysToAdd x =
 		((modm, xK_comma ), io (exitWith ExitSuccess)),						-- Quit xmonad
 		((modm, xK_period), spawn "xmonad --recompile; xmonad --restart")	-- Restart xmonad
 	]
-	++
-    mod-[1..9], Switch to workspace N
-    mod-shift-[1..9], Move client to workspace N
-    [((m .|. mod4Mask, k), windows $ f i)
-      | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-      , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+	-- ++
+    --mod-[1..9], Switch to workspace N
+    --mod-shift-[1..9], Move client to workspace N
+    --[((m .|. mod4Mask, k), windows $ f i)
+    --  | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+    --  , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
 	
 keysToDel x =
 	[
